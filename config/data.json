@@ -1,0 +1,22 @@
+{
+  "stores": [
+    {
+      "id": 1,
+      "name": "リボルト川崎",
+      "attribute": {
+        "address": "神奈川県川崎市中原区宮内3-8-5",
+        "tel": "044-281-8610",
+        "mail": "radiusrevolt@yahoo.co.jp"
+      }
+    },
+    {
+      "id": 2,
+      "name": "リボルト東京",
+      "attribute": {
+        "address": "東京都練馬区高松6-23-13",
+        "tel": "03-4400-3972",
+        "mail": "revolt@revolt-tokyo.jp"
+      }
+    }
+  ]
+}
