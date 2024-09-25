@@ -13,8 +13,8 @@ jobs:
     strategy:
       matrix:
         domain:
-          - kawasaki/
-          - tokyo/
+          - kawasaki
+          - tokyo
 
     steps:
       - name: 🚚 Get latest code
@@ -49,4 +49,4 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}/${{ matrix.domain }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}/${{ matrix.domain }}/
