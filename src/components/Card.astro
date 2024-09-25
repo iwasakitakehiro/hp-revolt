@@ -1,21 +1,16 @@
 ---
-import json from "../../config/data.json";
-// interface Props {
-// 	body: string;
+import { getConfig } from "../functions/getData";
 
-// }
-
-const { body } = Astro.props;
-const store = json.stores[0];
+const config = await getConfig();
 ---
 
 <section>
 	<div>
 		<p>
-			{store.name}
+			{config.name}
 		</p>
 		<p>
-			{store.attribute.address}
+			{config.attribute.address}
 		</p>
 	</div>
 </section>

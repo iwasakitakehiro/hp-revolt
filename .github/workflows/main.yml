@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
+
+    strategy:
+      matrix:
+        domain:
+          - kawasaki/
+          - tokyo/
+
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
@@ -18,16 +25,28 @@ jobs:
         with:
           node-version: "20"
 
+      # JSONファイルを参照してドメインごとのコンテンツを変更
+      - name: Modify content for each domain
+        run: |
+          JSON_FILE="config/${{ matrix.domain }}.json"
+          if [ -f "$JSON_FILE" ]; then
+            echo "Using JSON file: $JSON_FILE"
+            node scripts/updateContent.js "$JSON_FILE"
+          else
+            echo "Error: JSON file not found for ${{ matrix.domain }}"
+            exit 1
+          fi
+
       - name: Build Project
         run: |
           npm install
           npm run build
 
-      - name: 📂 Sync files
+      - name: 📂 Sync files to FTP for each domain
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}/${{ matrix.domain }}
