@@ -1,16 +1,16 @@
 ---
-import { getConfig } from "../functions/getData";
+import json from '../content/generated.json';
 
-const config = await getConfig();
+
 ---
 
 <section>
 	<div>
 		<p>
-			{config.name}
+			{json.name}
 		</p>
 		<p>
-			{config.attribute.address}
+			{json.attribute.address}
 		</p>
 	</div>
 </section>
