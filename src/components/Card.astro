@@ -1,16 +1,14 @@
 ---
-import json from '../content/data/storeData.json';
-
-
+import json from "../content/data/storeData.json";
 ---
 
 <section>
-	<div>
-		<p>
-			{json.name}
-		</p>
-		<p>
-			{json.attribute.address}
-		</p>
-	</div>
+  <div>
+    <p>
+      {json.name}
+    </p>
+    <p>
+      {json.attribute.address ? <div>{json.attribute.address}</div> : null}
+    </p>
+  </div>
 </section>
