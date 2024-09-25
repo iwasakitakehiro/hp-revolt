@@ -2,11 +2,12 @@ name: 🚀 Deploy website on push
 on:
   push:
     branches: [main]
+
 jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
-    environment: 
+    environment:
       name: production
     steps:
       - name: 🚚 Get latest code
@@ -22,9 +23,9 @@ jobs:
           npm install
           npm run build
 
-        - name: 📂 Sync files
-          uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-          with:
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
