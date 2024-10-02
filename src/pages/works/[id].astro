@@ -13,13 +13,18 @@ export async function getStaticPaths() {
   }
 
   // 動的にページを生成するためのパスを作成
-  return works.map(data => ({
-    params: { id: data.id.toString() }, // IDを文字列化してパスとして指定
-    props: {
-      id: data.id,
-      name: data.acf.client_name,
-    },
-  }));
+  return works.map(
+    (data: {
+      id: { toString: () => string };
+      acf: { client_name: string };
+    }) => ({
+      params: { id: data.id.toString() }, // IDを文字列化してパスとして指定
+      props: {
+        id: data.id,
+        name: data.acf.client_name,
+      },
+    })
+  );
 }
 
 // 動的に取得したデータ
