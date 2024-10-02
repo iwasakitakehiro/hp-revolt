@@ -17,7 +17,7 @@ function ArchiveWork() {
       setWorks(data); // データをセット
     };
     fetchedDataSet();
-  }, []);
+  }, [api]);
 
   return (
     <div className="App">
@@ -45,7 +45,7 @@ function ArchiveWork() {
                   !workdata.class_list.includes("sticky") &&
                   (currentCategory === workdata.acf.category_name ||
                     currentCategory === "all") ? (
-                    <a href={`/works/${workdata.id}`} key={workdata.id}>
+                    <a href={`./works/${workdata.id}`} key={workdata.id}>
                       <WorkContent
                         img={workdata.acf.eye_catch}
                         name={workdata.acf.client_name}
