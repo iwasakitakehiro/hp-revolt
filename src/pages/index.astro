@@ -1,15 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import json from "../content/data/storeData.json";
+import ArchiveWork from "../components/archive";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={json.name}>
   <main>
     <div>
       <Card />
+      <a href="/works"> worksページへ</a>
     </div>
   </main>
-
+  <!-- 
   <style>
     main {
       margin: auto;
@@ -70,5 +73,5 @@ import Card from "../components/Card.astro";
       gap: 2rem;
       padding: 0;
     }
-  </style>
+  </style> -->
 </Layout>

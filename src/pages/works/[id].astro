@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { fetchData } from "../../utils/fetchData";
+export async function getStaticPaths() {
+  const url = "https://hsc03.xsrv.jp/design";
+  const api = `${url}/wp-json/wp/v2/works?per_page=100&page=1`;
+  const works = await fetchData(api);
+
+  // 動的にページを生成するためのパスを作成
+  return works.map(
+    (data: {
+      id: { toString: () => string }; // IDを文字列化してパスとして指定
+      acf: { client_name: string };
+    }) => ({
+      params: { id: data.id },
+      props: {
+        id: data.id,
+        name: data.acf.client_name,
+      },
+    })
+  );
+}
+
+// 動的に取得したデータ
+const { id, name } = Astro.props;
+---
+
+<!-- ページ内容を表示 -->
+<Layout title={name}>
+  <h1>{id}</h1>
+  <h1>{name}</h1>
+</Layout>
