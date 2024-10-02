@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Single from "../../components/single";
 import { fetchData } from "../../utils/fetchData";
 
 export async function getStaticPaths() {
@@ -13,8 +14,8 @@ export async function getStaticPaths() {
   }
 
   // 動的にページを生成するためのパスを作成
-  return works.map((data: { id: any; acf: { client_name: any } }) => ({
-    params: { id: data.id }, // IDを文字列化してパスとして指定
+  return works.map((data: { id: number; acf: { client_name: any } }) => ({
+    params: { id: data.id.toString() }, // IDを文字列化してパスとして指定
     props: {
       id: data.id,
       name: data.acf.client_name,
@@ -28,6 +29,5 @@ const { id, name } = Astro.props;
 
 <!-- ページ内容を表示 -->
 <Layout title={name}>
-  <h1>{id}</h1>
-  <h1>{name}</h1>
+  <Single client:load id={id} />
 </Layout>
