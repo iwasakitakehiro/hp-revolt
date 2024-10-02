@@ -13,9 +13,11 @@ jobs:
     strategy:
       matrix:
         domain:
+          - kawasaki
+          - tokyo
+        path:
           - /rebolt/kawasaki
           - /rebolt/tokyo
-
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -41,7 +43,7 @@ jobs:
       - name: Modify base path for Astro
         run: |
           JSON_FILE="config/${{ matrix.domain }}.json"
-          BASE_PATH=$(jq -r '.basePath' "$JSON_FILE")
+          BASE_PATH=$(jq -r '.basePath' "${{ matrix.path }}")
           if [ -n "$BASE_PATH" ]; then
             echo "Setting base path to: $BASE_PATH"
             sed -i "s|base: '/'|base: '$BASE_PATH'|" astro.config.mjs
