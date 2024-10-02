@@ -15,9 +15,7 @@ jobs:
         domain:
           - kawasaki
           - tokyo
-        path:
-          - /rebolt/kawasaki
-          - /rebolt/tokyo
+
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
@@ -36,19 +34,6 @@ jobs:
             node scripts/updateContent.js "$JSON_FILE"
           else
             echo "Error: JSON file not found for ${{ matrix.domain }}"
-            exit 1
-          fi
-
-      # Astroのベースパスをドメインごとに変更
-      - name: Modify base path for Astro
-        run: |
-          JSON_FILE="config/${{ matrix.domain }}.json"
-          BASE_PATH=$(jq -r '.basePath' "${{ matrix.path }}")
-          if [ -n "$BASE_PATH" ]; then
-            echo "Setting base path to: $BASE_PATH"
-            sed -i "s|base: '/'|base: '$BASE_PATH'|" astro.config.mjs
-          else
-            echo "Error: basePath not found in JSON"
             exit 1
           fi
 
