@@ -1,6 +1,5 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import Single from "../../components/single";
 import { fetchData } from "../../utils/fetchData";
 
 export async function getStaticPaths() {
@@ -29,5 +28,10 @@ const { id, name } = Astro.props;
 
 <!-- ページ内容を表示 -->
 <Layout title={name}>
-  <Single client:load id={id} />
+  <p>
+    {id}
+  </p>
+  <p>
+    {name}
+  </p>
 </Layout>

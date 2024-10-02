@@ -76,9 +76,7 @@ function Single({ id }) {
             </a>
           </div>
         </div>
-      ) : (
-        <div>hoge</div>
-      )}
+      ) : null}
     </>
   );
 }
