@@ -37,13 +37,6 @@ jobs:
             exit 1
           fi
 
-      # Astroのベースパスをサブディレクトリごとに変更
-      - name: Modify base path for Astro
-        run: |
-          BASE_PATH="/rebolt/${{ matrix.domain }}" # サブディレクトリごとのベースパス
-          echo "Setting base path to: $BASE_PATH"
-          sed -i "s|base: '/'|base: '$BASE_PATH'|" astro.config.mjs
-
       - name: Build Project
         run: |
           npm install
