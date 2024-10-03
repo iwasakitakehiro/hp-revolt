@@ -5,7 +5,8 @@ import { fetchData } from "../../utils/fetchData";
 export async function getStaticPaths() {
   const url = "https://hsc03.xsrv.jp/design";
   const api = `${url}/wp-json/wp/v2/works?per_page=100&page=1`;
-  const works = await fetchData(api);
+  const res = await fetch(api);
+  const works = await res.json();
 
   return [
     { params: { id: works[0].id } },
