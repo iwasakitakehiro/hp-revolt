@@ -3,7 +3,11 @@ import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   // 動的にページを生成するためのパスを作成
-  return [{ params: { id: 1 } }, { params: { id: 2 } }, { params: { id: 3 } }];
+  return [
+    { params: { id: 125 } },
+    { params: { id: 2 } },
+    { params: { id: 3 } },
+  ];
 }
 
 // 動的に取得したデータ
