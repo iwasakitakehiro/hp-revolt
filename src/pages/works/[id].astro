@@ -1,12 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { fetchData } from "../../utils/fetchData";
 
 export async function getStaticPaths() {
-  // 動的にページを生成するためのパスを作成
+  const url = "https://hsc03.xsrv.jp/design";
+  const api = `${url}/wp-json/wp/v2/works?per_page=100&page=1`;
+  const works = await fetchData(api);
+
   return [
-    { params: { id: 125 } },
-    { params: { id: 2 } },
-    { params: { id: 3 } },
+    { params: { id: works[0].id } },
+    { params: { id: works[1].id } },
+    { params: { id: works[2].id } },
   ];
 }
 
