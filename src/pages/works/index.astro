@@ -1,31 +1,18 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import json from "../../content/data/storeData.json";
-import { fetchData } from "../../utils/fetchData";
-
-const url = "https://hsc03.xsrv.jp/design";
-const api = `${url}/wp-json/wp/v2/works?per_page=100&page=1`;
-// データ取得とエラーハンドリング
-const works = await fetchData(api);
-if (!works) {
-  return []; // エラーの場合、空の配列を返す
-}
 ---
 
 <Layout title={json.name}>
   <main>
     <div>
-      {
-        works ? (
-          works.map((work: { id: number; acf: { client_name: string } }) => (
-            <div>
-              <a href={`./${work.id}`}>{work.acf.client_name}</a>
-            </div>
-          ))
-        ) : (
-          <div>hoge</div>
-        )
-      }
+      <a href="./1">works1</a>
+    </div>
+    <div>
+      <a href="./2">works2</a>
+    </div>
+    <div>
+      <a href="./3">works3</a>
     </div>
   </main>
 </Layout>
