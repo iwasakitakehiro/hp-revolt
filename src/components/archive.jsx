@@ -31,7 +31,7 @@ function ArchiveWork() {
                   workdata.class_list.includes("sticky") &&
                   (currentCategory === workdata.acf.category_name ||
                     currentCategory === "all") ? (
-                    <a href={`./${workdata.id}`} key={workdata.id}>
+                    <a href={`./works/${workdata.id}`} key={workdata.id}>
                       <WorkContent
                         img={workdata.acf.eye_catch}
                         name={workdata.acf.client_name}
@@ -45,7 +45,7 @@ function ArchiveWork() {
                   !workdata.class_list.includes("sticky") &&
                   (currentCategory === workdata.acf.category_name ||
                     currentCategory === "all") ? (
-                    <a href={`./${workdata.id}`} key={workdata.id}>
+                    <a href={`./works/${workdata.id}`} key={workdata.id}>
                       <WorkContent
                         img={workdata.acf.eye_catch}
                         name={workdata.acf.client_name}
