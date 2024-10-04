@@ -5,7 +5,14 @@ import { fetchData } from "../../utils/fetchData";
 export async function getStaticPaths() {
   const url = "https://hsc03.xsrv.jp/design";
   const api = `${url}/wp-json/wp/v2/works?per_page=100&page=1`;
-  const works = await fetch(api).then(response => response.json());
+
+  const response = await fetch(api);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch data from API: ${response.statusText}`);
+  }
+
+  const works = await response.json();
 
   return works.map((work: { id: any }) => {
     return {
