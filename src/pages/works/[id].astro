@@ -5,13 +5,14 @@ import { fetchData } from "../../utils/fetchData";
 export async function getStaticPaths() {
   const url = "https://hsc03.xsrv.jp/design";
   const api = `${url}/wp-json/wp/v2/works?per_page=100&page=1`;
-  const works = await fetchData(api);
+  const works = await fetch(api).then(response => response.json());
 
-  return [
-    { params: { id: works[0].id } },
-    { params: { id: works[1].id } },
-    { params: { id: works[2].id } },
-  ];
+  return works.map((work: { id: any }) => {
+    return {
+      params: { id: work.id },
+      props: { work },
+    };
+  });
 }
 
 // 動的に取得したデータ
